@@ -70,6 +70,6 @@ def generate_mesh(geo_object, optimize=True, return_msh_fh=False, verbose=False)
     if return_msh_fh:
         return msh_handle
 
-    points, cells, _, _, _ = meshio.read(outname)
+    points, cells, _, _, _ = meshio.read(msh_handle.name)
 
     return points, cells
