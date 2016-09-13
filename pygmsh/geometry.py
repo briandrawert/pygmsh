@@ -335,18 +335,21 @@ class Geometry(object):
             s = self.add_plane_surface([ll] + holes)
         return s
 
-    def add_polygon_loop(self, X, lcar):
+    def add_polygon_loop(self, X, lcar, raw=True):
         # Create points.
-        p = [self.add_point(x, lcar) for x in X]
+        if raw:
+            p = [self.add_point(x, lcar) for x in X]
+        else:
+            p = X
         # Create lines
         e = [self.add_line(p[k], p[k+1]) for k in range(len(p)-1)]
         e.append(self.add_line(p[-1], p[0]))
         ll = self.add_line_loop(e)
         return ll
 
-    def add_polygon(self, X, lcar, holes=None):
+    def add_polygon(self, X, lcar, holes=None, raw=True):
         # Create line loop
-        ll = self.add_polygon_loop(X, lcar)
+        ll = self.add_polygon_loop(X, lcar, raw=raw)
         # Create surface (including optional holes)
         if holes is None:
             s = self.add_plane_surface(ll)
