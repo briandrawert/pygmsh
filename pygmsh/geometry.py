@@ -349,7 +349,7 @@ class Geometry(object):
 
     def add_polygon(self, X, lcar=None, holes=None, raw=True):
         # Create line loop
-        ll = self.add_polygon_loop(X, lcar, raw=raw)
+        ll = self.add_polygon_loop(X, lcar=lcar, raw=raw)
         # Create surface (including optional holes)
         if holes is None:
             s = self.add_plane_surface(ll)
